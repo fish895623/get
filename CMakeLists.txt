@@ -28,7 +28,9 @@ include(gtest.cmake)
 enable_testing()
 file(GLOB_RECURSE TESTCASE "tests/*.cpp")
 set(TEST_PROJECT_NAME ${PROJECT_NAME}_test)
-set(CMAKE_CXX_FLAGS --coverage)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+	set(CMAKE_CXX_FLAGS --coverage)
+endif()
 add_executable(
 	${TEST_PROJECT_NAME}
 	${TESTCASE}
