@@ -1,5 +1,8 @@
 #include <gtest/gtest.h>
 
+#include "hello.hpp"
+
 TEST(Hello, Assert) {
-	EXPECT_EQ(2, 2);
+  int a = add(1, 1);
+  EXPECT_EQ(a, 2);
 }
