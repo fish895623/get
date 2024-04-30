@@ -23,7 +23,9 @@ jobs:
 
       - run: sudo apt install lcov -y
 
-      - run: lcov --directory ./build/CMakeFiles/AA_lib.dir -c -o coverage.xml
+      - run: |
+          lcov --directory ./build/CMakeFiles/AA_lib.dir -c -o coverage.xml
+          lcov --remove coverage.xml -o coverage.xml "source/main.cpp" "tests"
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
