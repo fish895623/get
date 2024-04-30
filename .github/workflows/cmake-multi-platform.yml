@@ -12,7 +12,7 @@ jobs:
         run: cmake -Bbuild
 
       - name: Build
-        run: cmake --build build --parallel
+        run: cmake --build build --parallel --target AA_test
 
       - name: Test
         run: ./build/AA_test
@@ -24,4 +24,4 @@ jobs:
       - run: python -m pip install gcovr
 
       - run: |
-          A=$(gcovr --filter source  --json | jq ".files.[].functions.[].blocks_percent" | awk '{ total += $1; count++ } END { print "", total/count }')
+          gcovr --filter source  --json | jq ".files.[].functions.[].blocks_percent" | awk '{ total += $1; count++ } END { print "", total/count }'
