@@ -26,5 +26,7 @@ jobs:
       # - run: |
       #     lcov --directory ./build/CMakeFiles/AA_lib.dir -c -o coverage.xml
       #     lcov --remove coverage.xml -o coverage.xml "source/main.cpp" "tests"
-      - run: bash ${{ github.workspace }}/.github/scripts/gcovr.sh
+      - run: |
+          pwd
+          bash ${{ github.workspace }}/.github/scripts/gcovr.sh
         working-directory: ${{ github.workspace }}
