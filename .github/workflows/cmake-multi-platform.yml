@@ -23,5 +23,10 @@ jobs:
 
       - run: python -m pip install gcovr
 
-      - run: |
-          gcovr --filter source  --json | jq ".files.[].functions.[].blocks_percent" | awk '{ total += $1; count++ } END { print "", total/count }'
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      # - run: |
+      #     gcovr --filter source  --json | jq ".files.[].functions.[].blocks_percent" | awk '{ total += $1; count++ } END { print "", total/count }'
