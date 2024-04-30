@@ -21,17 +21,9 @@ jobs:
         with:
           python-version: "3.10"
 
-      - run: sudo apt install lcov -y
-
-      - run: |
-          lcov --directory ./build/CMakeFiles/AA_lib.dir -c -o coverage.xml
-          lcov --remove coverage.xml -o coverage.xml "source/main.cpp" "tests"
-
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage.xml
+      - run: sudo apt install lcov gcovr -y
 
       # - run: |
-      #     gcovr --filter source  --json | jq ".files.[].functions.[].blocks_percent" | awk '{ total += $1; count++ } END { print "", total/count }'
+      #     lcov --directory ./build/CMakeFiles/AA_lib.dir -c -o coverage.xml
+      #     lcov --remove coverage.xml -o coverage.xml "source/main.cpp" "tests"
+      - run: bash ${{ github.workspace }}/.github/scripts/gcovr.sh
