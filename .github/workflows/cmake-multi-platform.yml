@@ -17,6 +17,12 @@ jobs:
       - name: Test
         run: ./build/AA_test
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - runs: python -m pip install gcovr
+
       - name: Generate a code coverage report
         uses: threeal/gcovr-action@v1.0.0
         with:
