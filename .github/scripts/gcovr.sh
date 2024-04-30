@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 number=$(gcovr --filter source  --json-summary --exclude source/main.cpp | jq '.function_percent')
 
-if [ $number -gt 90 ]; then
+result=$(echo "$number > 90" | bc)
+
+if [ $result -eq 1 ]; then
   echo "Coverage is greater than 90%"
   exit 0
 else
