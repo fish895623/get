@@ -8,5 +8,6 @@ if [ $result -eq 1 ]; then
   exit 0
 else
   echo "Coverage is less than 90%"
+  gcovr --filter source  --json-summary --exclude source/main.cpp
   exit 1
 fi
