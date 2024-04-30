@@ -6,20 +6,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Configure CMake
-      run: cmake -Bbuild
+      - name: Configure CMake
+        run: cmake -Bbuild
 
-    - name: Build
-      run: cmake --build build --parallel
+      - name: Build
+        run: cmake --build build --parallel
 
-    - name: Test
-      run: ./build/AA_test
+      - name: Test
+        run: ./build/AA_test
 
-    - name: Generate a code coverage report
-      uses: threeal/gcovr-action@v1.0.0
-      with:
-        exclude: |
-          build/
-          source/main.cpp
+      - name: Generate a code coverage report
+        uses: threeal/gcovr-action@v1.0.0
+        with:
+          exclude: |
+            "build/*"
+            "source/main.cpp"
