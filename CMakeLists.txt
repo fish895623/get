@@ -28,9 +28,12 @@ include(gtest.cmake)
 enable_testing()
 file(GLOB_RECURSE TESTCASE "tests/*.cpp")
 set(TEST_PROJECT_NAME ${PROJECT_NAME}_test)
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-	set(CMAKE_CXX_FLAGS --coverage)
+message(STATUS "Test project name: ${CMAKE_BUILD_TYPE}")
+# if build type is none or Debug, add --coverage flag
+if(CMAKE_BUILD_TYPE STREQUAL "" OR CMAKE_BUILD_TYPE STREQUAL "Debug")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
 endif()
+
 add_executable(
 	${TEST_PROJECT_NAME}
 	${TESTCASE}
